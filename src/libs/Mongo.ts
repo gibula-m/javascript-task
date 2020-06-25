@@ -31,10 +31,8 @@ export const updateIssue = async (issue : Issue) => {
     const dbObject = connection.db('issueTracker');
 
     const old = await dbObject.collection('issue').findOne({_id: new mongo.ObjectID(issue._id)});
-    console.log(old);
-    console.log(issue);
-    if(issue.state){
-      stateValidator(old,issue);
+    if (issue.state) {
+      stateValidator(old, issue);
     }
 
     const updated = JSON.parse(JSON.stringify(issue, (k, v) => v ?? undefined));

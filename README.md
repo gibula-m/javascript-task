@@ -1,1 +1,1 @@
-### JavaScript Fullstack Task
+### JavaScript Task
