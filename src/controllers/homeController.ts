@@ -22,7 +22,7 @@ export const postIndex = async (req : Request, res : Response) => {
       throw new HttpError(400, 'Received data are incomplete!');
     }
     try {
-      issue.state = IssueType.PENDING;
+      issue.state = IssueType.OPEN;
       await IssuesRepository.addIssue(issue);
     } catch (error) {
       throw new HttpError(500, 'Cannot store issue!');

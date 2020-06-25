@@ -1,6 +1,7 @@
 import * as mongo from 'mongodb';
 import {Issue} from '../types/Issue';
 import {HttpError} from '../errors/HttpError';
+import {stateValidator} from '../libs/Helper';
 
 const dbURL = 'mongodb://localhost:27017';
 
@@ -28,6 +29,13 @@ export const updateIssue = async (issue : Issue) => {
   try {
     const connection = await mongo.connect(dbURL);
     const dbObject = connection.db('issueTracker');
+
+    const old = await dbObject.collection('issue').findOne({_id: new mongo.ObjectID(issue._id)});
+    console.log(old);
+    console.log(issue);
+    if(issue.state){
+      stateValidator(old,issue);
+    }
 
     const updated = JSON.parse(JSON.stringify(issue, (k, v) => v ?? undefined));
     delete updated._id;
