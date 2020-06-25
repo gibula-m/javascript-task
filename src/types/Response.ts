@@ -1,5 +1,4 @@
-export interface ResponseWrapper{
-  status : number,
-  message : string,
-  incomingData : any
+export class ResponseDTO {
+  readonly status : number;
+  readonly data : any;
 }
