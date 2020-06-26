@@ -2,11 +2,11 @@
   "name": "terminal_api",
   "version": "1.0.0",
   "description": "",
-  "main": "./build/src/app/app.js",
+  "main": "./build/src/app.js",
   "scripts": {
     "test": "tsc && jest test.js --coverage",
     "lint": "eslint . --ext .ts",
-    "start": "tsc && node build/src/app/app.js"
+    "start": "tsc && node build/src/app.js"
   },
   "author": "",
   "license": "ISC",

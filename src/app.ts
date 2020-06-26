@@ -1,8 +1,8 @@
 import express from 'express';
-import * as homeController from '../controllers/home';
+import * as homeController from './controllers/home';
 import * as bodyParser from 'body-parser';
 import {Request, Response, NextFunction} from 'express';
-import {requestLoggingMiddleware,errorLoggingMiddleware} from '../libs/helper';
+import {requestLoggingMiddleware,errorLoggingMiddleware} from './libs/helper';
 
 
 const app = express();
