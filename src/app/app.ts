@@ -1,7 +1,6 @@
 import express from 'express';
 import * as homeController from '../controllers/homeController';
 import * as bodyParser from 'body-parser';
-import {errorHandler} from '../middleware/Errors';
 import {Request, Response, NextFunction} from 'express';
 import {requestLogger} from '../middleware/RequestHandler';
 
@@ -14,9 +13,10 @@ app.use(requestLogger);
 
 app.get('/', homeController.getIndex);
 app.post('/', homeController.postIndex);
+app.get('/issue/:issueId/state/:state', homeController.getUpdateIssueState);
 
-app.use((err : Error, req : Request, res : Response, next : NextFunction) => {
-  errorHandler(err, res);
+app.use((err : any, req : Request, res : Response, next : NextFunction) => {
+  res.send(err);
 });
 
 app.listen(process.env.PORT, function() {

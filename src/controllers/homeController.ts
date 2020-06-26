@@ -1,18 +1,15 @@
-import {Request, Response} from 'express';
+import {Request, Response, NextFunction} from 'express';
 import {Issue} from '../types/Issue';
 import * as IssuesRepository from '../libs/Mongo';
 import {ResponseDTO} from '../types/Response';
 import {IssueType} from '../libs/Enums';
 import {HttpError} from '../errors/HttpError';
+import {render} from '../front/render';
+import {getMainComponent} from '../front/node';
 
 export const getIndex = async (req : Request, res : Response) => {
   const list = await IssuesRepository.getAllIssues();
-
-  const response : ResponseDTO = {
-    status: 200,
-    data: list,
-  };
-  res.status(response.status).json(response);
+  res.send(render(getMainComponent(list)));
 };
 
 export const postIndex = async (req : Request, res : Response) => {
@@ -36,4 +33,19 @@ export const postIndex = async (req : Request, res : Response) => {
     data: {},
   };
   res.status(response.status).json(response);
+};
+
+export const getUpdateIssueState = async (req : Request, res : Response, next : NextFunction) => {
+  const issueUpdate : Issue = {
+    _id: req.params.issueId,
+    state: parseInt(req.params.state),
+  };
+  try {
+    await IssuesRepository.updateIssue(issueUpdate);
+  } catch (error) {
+    next(error);
+  }
+
+
+  res.redirect('/');
 };
