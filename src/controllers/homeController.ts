@@ -4,6 +4,8 @@ import * as IssuesRepository from '../libs/Mongo';
 import {ResponseDTO} from '../types/Response';
 import {IssueType} from '../libs/Enums';
 import {HttpError} from '../errors/HttpError';
+import {render} from '../front/render';
+import {getMainComponent} from '../front/node';
 
 export const getIndex = async (req : Request, res : Response) => {
   const list = await IssuesRepository.getAllIssues();
@@ -37,3 +39,7 @@ export const postIndex = async (req : Request, res : Response) => {
   };
   res.status(response.status).json(response);
 };
+
+export const getReact = (req : Request, res : Response) => {
+  res.send(render(getMainComponent()));
+}
