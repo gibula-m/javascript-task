@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response} from 'express';
 import {Issue} from '../types/issue';
-import * as IssuesRepository from '../libs/mongo';
-import {IssueType} from '../libs/enums';
+import * as IssuesRepository from '../libraries/mongo';
+import {IssueType} from '../libraries/enums';
 import {HttpError} from '../errors/httpError';
 import {render} from '../front/render';
 import {getMainComponent} from '../front/node';

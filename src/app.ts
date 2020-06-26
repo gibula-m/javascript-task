@@ -2,7 +2,7 @@ import express from 'express';
 import * as homeController from './controllers/home';
 import * as bodyParser from 'body-parser';
 import {NextFunction, Request, Response} from 'express';
-import {errorLoggingMiddleware,requestLoggingMiddleware} from './libs/helper';
+import {errorLoggingMiddleware,requestLoggingMiddleware} from './libraries/helper';
 
 
 const app = express();
