@@ -1,20 +1,22 @@
 import express from 'express';
-import * as homeController from '../controllers/homeController';
+import * as homeController from '../controllers/home';
 import * as bodyParser from 'body-parser';
 import {Request, Response, NextFunction} from 'express';
-import {requestLogger} from '../middleware/RequestHandler';
+import {requestLoggingMiddleware,errorLoggingMiddleware} from '../libs/helper';
+
 
 const app = express();
 
 app.use(bodyParser.urlencoded({extended: true}));
 
-app.use(requestLogger);
+app.use(requestLoggingMiddleware);
 
 app.get('/', homeController.getIndex);
 app.post('/issue', homeController.postIssue);
 app.get('/issue/:issueId/state/:state', homeController.getUpdateIssueState);
 
 app.use((err : any, req : Request, res : Response, next : NextFunction) => {
+  errorLoggingMiddleware(err);
   res.send(err);
 });
 

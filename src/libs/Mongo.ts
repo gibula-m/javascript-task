@@ -1,7 +1,7 @@
 import * as mongo from 'mongodb';
-import {Issue} from '../types/Issue';
-import {HttpError} from '../errors/HttpError';
-import {stateValidator} from '../libs/Helper';
+import {Issue} from '../types/issue';
+import {HttpError} from '../errors/httpError';
+import {stateValidator} from '../libs/helper';
 
 const dbURL = 'mongodb://localhost:27017';
 

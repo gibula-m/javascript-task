@@ -1,8 +1,8 @@
 import {Request, Response, NextFunction} from 'express';
-import {Issue} from '../types/Issue';
-import * as IssuesRepository from '../libs/Mongo';
-import {IssueType} from '../libs/Enums';
-import {HttpError} from '../errors/HttpError';
+import {Issue} from '../types/issue';
+import * as IssuesRepository from '../libs/mongo';
+import {IssueType} from '../libs/enums';
+import {HttpError} from '../errors/httpError';
 import {render} from '../front/render';
 import {getMainComponent} from '../front/node';
 
@@ -39,7 +39,6 @@ export const getUpdateIssueState = async (req : Request, res : Response, next : 
   } catch (error) {
     next(error);
   }
-
 
   res.redirect('/');
 };

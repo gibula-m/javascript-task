@@ -1,4 +1,4 @@
-import {HttpError} from '../src/errors/HttpError';
+import {HttpError} from '../src/errors/httpError';
 
 describe('Classes tests', () => {
   const err = new HttpError(500, 'Internal error');
