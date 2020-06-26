@@ -9,6 +9,7 @@ export const addIssue = async (issue : Issue) => {
   try {
     const connection = await mongo.connect(dbURL);
     const dbObject = connection.db('issueTracker');
+
     return (await dbObject.collection('issue').insertOne(issue)).insertedId;
   } catch (error) {
     throw new HttpError(500, 'Cannot store issue!');
@@ -19,6 +20,7 @@ export const getAllIssues = async () : Promise<Array<Issue>> => {
   try {
     const connection = await mongo.connect(dbURL);
     const dbObject = connection.db('issueTracker');
+
     return dbObject.collection('issue').find({}).toArray();
   } catch (error) {
     throw new HttpError(500, 'Data receiving err!');

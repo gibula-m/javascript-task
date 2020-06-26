@@ -1,4 +1,4 @@
-import {Request, Response, NextFunction} from 'express';
+import { NextFunction, Request, Response} from 'express';
 import {Issue} from '../types/issue';
 import * as IssuesRepository from '../libs/mongo';
 import {IssueType} from '../libs/enums';
