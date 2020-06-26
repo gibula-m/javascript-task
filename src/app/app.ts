@@ -14,7 +14,6 @@ app.use(requestLogger);
 
 app.get('/', homeController.getIndex);
 app.post('/', homeController.postIndex);
-app.get('/react',homeController.getReact);
 
 app.use((err : Error, req : Request, res : Response, next : NextFunction) => {
   errorHandler(err, res);
