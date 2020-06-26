@@ -1,4 +1,4 @@
-import {Request, Response} from 'express';
+import {Request, Response, NextFunction} from 'express';
 import {Issue} from '../types/Issue';
 import * as IssuesRepository from '../libs/Mongo';
 import {ResponseDTO} from '../types/Response';
@@ -34,3 +34,18 @@ export const postIndex = async (req : Request, res : Response) => {
   };
   res.status(response.status).json(response);
 };
+
+export const getUpdateIssueState = async (req : Request, res : Response, next : NextFunction) => {
+  const issueUpdate : Issue = {
+    _id : req.params.issueId,
+    state : parseInt(req.params.state)
+  }
+  try {
+    await IssuesRepository.updateIssue(issueUpdate);
+  } catch (error) {
+    next(error);
+  }
+
+
+  res.redirect('/');
+}

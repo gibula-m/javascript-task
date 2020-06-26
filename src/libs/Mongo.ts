@@ -26,7 +26,6 @@ export const getAllIssues = async () : Promise<Array<Issue>> => {
 };
 
 export const updateIssue = async (issue : Issue) => {
-  try {
     const connection = await mongo.connect(dbURL);
     const dbObject = connection.db('issueTracker');
 
@@ -39,7 +38,5 @@ export const updateIssue = async (issue : Issue) => {
     delete updated._id;
 
     return dbObject.collection('issue').updateOne({_id: new mongo.ObjectID(issue._id)}, {$set: updated});
-  } catch (error) {
-    throw new HttpError(500, 'Cannot update issue!');
-  }
+
 };

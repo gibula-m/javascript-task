@@ -13,7 +13,7 @@ export function render(page: any, config = {}) {
       <main>
         ${ReactDOMServer.renderToStaticMarkup(page)}
       </main>
-      <footer><p><small>Copyright ${new Date().getFullYear()}</small></p></footer>
+      <footer class="container"><p><small>Copyright ${new Date().getFullYear()}</small></p></footer>
       <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
     </body>
     </html>`;
