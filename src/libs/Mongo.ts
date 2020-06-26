@@ -3,7 +3,7 @@ import {Issue} from '../types/Issue';
 import {HttpError} from '../errors/HttpError';
 import {stateValidator} from '../libs/Helper';
 
-const dbURL = 'mongodb://db:27017';
+const dbURL = 'mongodb://localhost:27017';
 
 export const addIssue = async (issue : Issue) => {
   try {
