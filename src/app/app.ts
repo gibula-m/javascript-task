@@ -6,13 +6,12 @@ import {requestLogger} from '../middleware/RequestHandler';
 
 const app = express();
 
-app.use(bodyParser.urlencoded({extended: false}));
-app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: true}));
 
 app.use(requestLogger);
 
 app.get('/', homeController.getIndex);
-app.post('/', homeController.postIndex);
+app.post('/issue', homeController.postIssue);
 app.get('/issue/:issueId/state/:state', homeController.getUpdateIssueState);
 
 app.use((err : any, req : Request, res : Response, next : NextFunction) => {

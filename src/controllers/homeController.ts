@@ -9,10 +9,11 @@ import {getMainComponent} from '../front/node';
 
 export const getIndex = async (req : Request, res : Response) => {
   const list = await IssuesRepository.getAllIssues();
-  res.send(render(getMainComponent(list)));
+  res.send(render(getMainComponent(list.reverse())));
 };
 
-export const postIndex = async (req : Request, res : Response) => {
+export const postIssue = async (req : Request, res : Response) => {
+  console.log(req.body);
   const issue : Issue = req.body;
   if (!issue._id) {
     if (!issue.title || !issue.description) {
@@ -27,12 +28,7 @@ export const postIndex = async (req : Request, res : Response) => {
   } else {
     await IssuesRepository.updateIssue(issue);
   }
-
-  const response : ResponseDTO = {
-    status: 200,
-    data: {},
-  };
-  res.status(response.status).json(response);
+  res.redirect('/');
 };
 
 export const getUpdateIssueState = async (req : Request, res : Response, next : NextFunction) => {
