@@ -26,17 +26,16 @@ export const getAllIssues = async () : Promise<Array<Issue>> => {
 };
 
 export const updateIssue = async (issue : Issue) => {
-    const connection = await mongo.connect(dbURL);
-    const dbObject = connection.db('issueTracker');
+  const connection = await mongo.connect(dbURL);
+  const dbObject = connection.db('issueTracker');
 
-    const old = await dbObject.collection('issue').findOne({_id: new mongo.ObjectID(issue._id)});
-    if (issue.state) {
-      stateValidator(old, issue);
-    }
+  const old = await dbObject.collection('issue').findOne({_id: new mongo.ObjectID(issue._id)});
+  if (issue.state) {
+    stateValidator(old, issue);
+  }
 
-    const updated = JSON.parse(JSON.stringify(issue, (k, v) => v ?? undefined));
-    delete updated._id;
+  const updated = JSON.parse(JSON.stringify(issue, (k, v) => v ?? undefined));
+  delete updated._id;
 
-    return dbObject.collection('issue').updateOne({_id: new mongo.ObjectID(issue._id)}, {$set: updated});
-
+  return dbObject.collection('issue').updateOne({_id: new mongo.ObjectID(issue._id)}, {$set: updated});
 };

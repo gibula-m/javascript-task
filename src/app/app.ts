@@ -13,7 +13,7 @@ app.use(requestLogger);
 
 app.get('/', homeController.getIndex);
 app.post('/', homeController.postIndex);
-app.get('/issue/:issueId/state/:state', homeController.getUpdateIssueState)
+app.get('/issue/:issueId/state/:state', homeController.getUpdateIssueState);
 
 app.use((err : any, req : Request, res : Response, next : NextFunction) => {
   res.send(err);

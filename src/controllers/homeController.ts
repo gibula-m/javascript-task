@@ -37,9 +37,9 @@ export const postIndex = async (req : Request, res : Response) => {
 
 export const getUpdateIssueState = async (req : Request, res : Response, next : NextFunction) => {
   const issueUpdate : Issue = {
-    _id : req.params.issueId,
-    state : parseInt(req.params.state)
-  }
+    _id: req.params.issueId,
+    state: parseInt(req.params.state),
+  };
   try {
     await IssuesRepository.updateIssue(issueUpdate);
   } catch (error) {
@@ -48,4 +48,4 @@ export const getUpdateIssueState = async (req : Request, res : Response, next : 
 
 
   res.redirect('/');
-}
+};
