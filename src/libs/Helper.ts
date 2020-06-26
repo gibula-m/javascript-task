@@ -1,7 +1,7 @@
 import {Issue} from '../types/issue';
 import {IssueType} from './enums';
 import {HttpError} from '../errors/httpError';
-import {Request, Response, NextFunction} from 'express';
+import {NextFunction, Request, Response} from 'express';
 
 export const stateValidator = (old : Issue, bid : Issue) => {
   if (old.state == IssueType.CLOSED) {
