@@ -1,7 +1,6 @@
 import {Request, Response, NextFunction} from 'express';
 import {Issue} from '../types/Issue';
 import * as IssuesRepository from '../libs/Mongo';
-import {ResponseDTO} from '../types/Response';
 import {IssueType} from '../libs/Enums';
 import {HttpError} from '../errors/HttpError';
 import {render} from '../front/render';
@@ -13,7 +12,6 @@ export const getIndex = async (req : Request, res : Response) => {
 };
 
 export const postIssue = async (req : Request, res : Response) => {
-  console.log(req.body);
   const issue : Issue = req.body;
   if (!issue._id) {
     if (!issue.title || !issue.description) {
