@@ -15,4 +15,7 @@ React components can be found on ```src/front```. Of course there is configured 
 There is no documentation for that project because i believe it is clean, self-reported and it's easy to understand file and code structure.
 
 #### Improvement
-At the first place I would think about unit tests. Next step in my opinion is pagination and Redis, when amount of issues will be large.
+* remove bootstrap and jQuery (because of size of libraries)
+* unit tests
+* pagination
+* Redis
